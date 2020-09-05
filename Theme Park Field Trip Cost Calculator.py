@@ -35,6 +35,7 @@ print("----------------------------------------")
 
 while no_of_people != 0:
     name_of_person = input("What is the first name of the student? ")
+    print("")
 
     if name_of_person.isalpha():
         names_of_students.append(name_of_person)
@@ -47,9 +48,15 @@ while no_of_people != 0:
 
             if check_to_pay == "paid":
                 paid_or_not.append(check_to_pay)
+
+                print("")
+
                 valid_input = False
             elif check_to_pay == "not paid":
                 paid_or_not.append(check_to_pay)
+
+                print("")
+
                 valid_input = False
             else:
                 print("Please input 'paid' or 'not paid'")
