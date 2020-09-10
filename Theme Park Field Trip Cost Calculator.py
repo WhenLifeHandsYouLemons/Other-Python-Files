@@ -14,10 +14,13 @@ valid_input = True
 
 while valid_input:
     try:
-        no_of_people = int(input("How many students are going on this trip? "))
+        no_of_students = int(input("How many students are going on this trip? "))
 
-        if no_of_people <= 0:
+        if no_of_students <= 0:
             print("Please input a valid, positive number")
+            print("")
+        elif no_of_students > 45:
+            print("Please input a number less than or equal to 45")
             print("")
         else:
             valid_input = False
@@ -25,21 +28,21 @@ while valid_input:
         print("Please input a number")
         print("")
 
-if no_of_people >= 10:
-    free_tickets = no_of_people // 10
+if no_of_students >= 10:
+    free_tickets = no_of_students // 10
 
-cost_per_student = round(((cost_of_coach / (no_of_people - free_tickets)) + entry_cost), 2)
+cost_per_student = round(((cost_of_coach / (no_of_students - free_tickets)) + entry_cost), 2)
 print("----------------------------------------")
 print(f"The estimated cost per student will be ${cost_per_student}")
 print("----------------------------------------")
 
-while no_of_people != 0:
+while no_of_students != 0:
     name_of_person = input("What is the first name of the student? ")
     print("")
 
     if name_of_person.isalpha():
         names_of_students.append(name_of_person)
-        no_of_people = no_of_people - 1
+        no_of_students = no_of_students - 1
 
         valid_input = True
 
