@@ -1,3 +1,7 @@
+"""
+For IGCSE Computer Science course
+"""
+
 import sqlite3
 
 def open_database(filename):

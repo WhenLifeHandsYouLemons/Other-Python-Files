@@ -1,3 +1,7 @@
+"""
+For IGCSE Computer Science course
+"""
+
 import pyotp
 import qrcode
 

@@ -1,4 +1,8 @@
-#Objects
+"""
+For IGCSE Computer Science course
+"""
+
+# Objects
 
 print("Objects".upper())
 

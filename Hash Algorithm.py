@@ -1,3 +1,7 @@
+"""
+For IGCSE Computer Science course
+"""
+
 import hashlib
 
 original = input("Message: ")

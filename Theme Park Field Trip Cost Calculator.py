@@ -1,3 +1,7 @@
+"""
+For IGCSE Computer Science course
+"""
+
 cost_of_coach = 550
 entry_cost = 30
 free_tickets = 0
@@ -17,27 +21,29 @@ while valid_input:
         no_of_students = int(input("How many students are going on this trip? "))
 
         if no_of_students <= 0:
-            print("Please input a valid, positive number")
+            print("Please input a valid, positive number between 1 and 45")
             print("")
         elif no_of_students > 45:
-            print("Please input a number less than or equal to 45")
+            print("The maximum number of students allowed on this trip is 45.")
             print("")
         else:
             valid_input = False
     except ValueError:
-        print("Please input a number")
+        print("Please input a number.")
         print("")
 
 if no_of_students >= 10:
     free_tickets = no_of_students // 10
 
 cost_per_student = round(((cost_of_coach / (no_of_students - free_tickets)) + entry_cost), 2)
+print("")
 print("----------------------------------------")
 print(f"The estimated cost per student will be ${cost_per_student}")
 print("----------------------------------------")
+print("")
 
 while no_of_students != 0:
-    name_of_person = input("What is the first name of the student? ")
+    name_of_person = input(f"What is the first name of the student number {no_of_students}? ")
     print("")
 
     if name_of_person.isalpha():
@@ -65,11 +71,13 @@ while no_of_students != 0:
                 print("Please input 'paid' or 'not paid'")
                 print("")
     else:
-        print("Please type the first name of a student")
+        print("Please type the first name of a student only.")
         print("")
 
 valid_input = len(names_of_students)
 
+print("----------------------------------------")
+print("Receipt")
 print("----------------------------------------")
 
 while valid_input != 0:
@@ -95,6 +103,7 @@ profit_or_loss = round(money_collected - cost_charged, 2)
 if profit_or_loss > 0:
     profit_or_loss_text = "made a profit"
 elif profit_or_loss < 0:
+    profit_or_loss = profit_or_loss * -1
     profit_or_loss_text = "made a loss"
 else:
     profit_or_loss_text = "broken even"

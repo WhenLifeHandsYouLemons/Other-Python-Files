@@ -1,3 +1,7 @@
+"""
+For IGCSE Computer Science course
+"""
+
 import random
 
 menu = ["French fries", "1/4 pound burger", "1/4 pound cheeseburger", "1/2 pound burger", "1/2 pound cheeseburger", "Medium pizza", "Medium pizza with extra toppings", "Large pizza", "Large pizza with extra toppings", "Garlic bread"]

@@ -1,3 +1,7 @@
+"""
+For IGCSE Computer Science course
+"""
+
 no_of_letters = 0
 text_letters = []
 text_decimal = []

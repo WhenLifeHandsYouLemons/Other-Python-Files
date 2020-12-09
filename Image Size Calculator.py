@@ -1,3 +1,7 @@
+"""
+For IGCSE Computer Science course
+"""
+
 length = int(input("What is the length of the image in pixels?"))
 width = int(input("What is the width of the image in pixels?"))
 colour_depth = int(input("What is the colour depth in bits?"))

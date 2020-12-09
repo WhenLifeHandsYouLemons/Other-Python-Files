@@ -76,7 +76,7 @@ class App():
         filename = filedialog.askopenfilename(initialdir=os.getcwd(), title="Open an SQLite database file")
         # Check dialog wasn't cancelled
         if len(filename) == 0 or not os.path.exists(filename):
-            messagebox.showerror("Unable to continue", "You must select an existing SQLite database to proceed\nA recommended tool to create one is DB Browser from https://sqlitebrowser.org/")
+            messagebox.showerror("Unable to continue","You must select an existing SQLite database to proceed\nA recommended tool to create one is DB Browser from https://sqlitebrowser.org/")
             exit(1)
         # Check database is valid, and obtain list of tables
         try:
@@ -85,7 +85,7 @@ class App():
             # Get tables listing
             tables = self.db.read("SELECT name FROM sqlite_master WHERE type='table';")
         except sqlite3.DatabaseError:
-            messagebox.showerror("Unable to continue", "Sorry, that file is not a valid SQLite database")
+            messagebox.showerror("Unable to continue","Sorry, that file is not a valid SQLite database")
             exit(1)
         # Populate a list of tables for our app
         self.tables = []
@@ -94,16 +94,16 @@ class App():
             if "name" in val:
                 # Add table name to self.tables list
                 self.tables.append(val['name'])
-        print("Found tables:", self.tables)
+        print("Found tables:",self.tables)
         # Get all fields within each table
         for table in self.tables:
             # Read the first row of every table so we can extract field names
             data = self.db.read(f"SELECT * FROM {table} LIMIT 1;")
             if len(data) == 1: # If the table returned a record
-                for key, val in data[0].items():
+                for key,val in data[0].items():
                     # Add a field record to the self.fields list
                     self.fields.append( {"table": table, "field": key} )
-        print("Found fields:", self.fields)
+        print("Found fields:",self.fields)
         
     def render_form(self):
         """ Create the query window """
@@ -173,6 +173,7 @@ class App():
         sql_tables = []
         sql_sort = []
         sql_where = []
+        sql_where_or = []
         for i in range(len(self.fields)):
             # Full qualified field name
             # TODO - Will need this for table joins - fqfn = "`"+self.widgets_table[i].get() +"."+self.widgets_field[i].get()+"`"
@@ -190,10 +191,11 @@ class App():
             # If a WHERE clause has been specified
             if self.widgets_criteria[i].get() != "":
                 sql_where_this = fqfn + self.widgets_criteria[i].get()
-                # Only accept an OR clause if the CRITERIA entry box has also been provided
-                if self.widgets_or[i].get() != "":
-                    sql_where_this += " OR " + fqfn + self.widgets_or[i].get()
                 sql_where.append(sql_where_this)
+            # OR clause
+            if self.widgets_or[i].get() != "":
+                sql_where_this = fqfn + self.widgets_or[i].get()
+                sql_where_or.append(sql_where_this)
         # Check we were given something to do
         if len(sql_fields) == 0:
             messagebox.showerror("Nothing to do","You haven't asked for any data\n\nCheck you have\n1. Selected a field\n2. Selected the table\n3. Turned on 'show'")
@@ -206,6 +208,8 @@ class App():
         sql = "SELECT " + ",".join(sql_fields) + " FROM " + sql_tables[0]
         if len(sql_where) > 0:
             sql += " WHERE (" + ") AND (".join(sql_where) + ")"
+            if len(sql_where_or) > 0:
+                sql += " OR ( " + ") OR (".join(sql_where_or) + ")"
         if len(sql_sort) > 0:
             sql += " ORDER BY " + ",".join(sql_sort)
         print("\nExecuting: "+sql)
