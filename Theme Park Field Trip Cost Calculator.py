@@ -1,6 +1,6 @@
 """
-For IGCSE Computer Science course
-Made by: Sooraj Sannabhadti
+For IGCSE Computer Science course & IGCSE Computer Mock Exam
+Author: Sooraj Sannabhadti
 """
 import time
 
@@ -41,33 +41,12 @@ print(f"The estimated cost per student will be ${cost_per_student}")
 print("----------------------------------------")
 print("")
 
-# Task 3
-time.sleep(2.5)
-valid_input = True
-while valid_input:
-    try:
-        no_of_students = int(input("How many students are STILL going on this trip? "))
-
-        if no_of_students < 0:
-            print("Please input a valid, positive number between 0 and 45")
-            print("")
-        elif no_of_students > 45:
-            print("Sorry, the maximum number of students allowed on this trip is 45.")
-            print("")
-        else:
-            print("")
-            valid_input = False
-    except ValueError:
-        print("Please input a number.")
-        print("")
-
-
 # Task 2
 name_list_count = 0
 paid_list_count = 0
 check_list_count = 0
-profit_or_loss_text = ""
 paid = 0
+profit_or_loss_text = ""
 
 names_of_students = []
 paid_or_not = []
@@ -112,11 +91,35 @@ print("----------------------------------------")
 
 while valid_input != 0:
     print(f"{names_of_students[name_list_count]} has {paid_or_not[paid_list_count]} ${cost_per_student}")
+
     name_list_count = name_list_count + 1
     paid_list_count = paid_list_count + 1
     valid_input = valid_input - 1
 
 # Task 3
+time.sleep(2.5)
+
+previous_no_of_students = no_of_students
+
+valid_input = True
+while valid_input:
+    try:
+        no_of_students = int(input("How many students are STILL going on this trip? "))
+
+        if no_of_students < 0:
+            print("Please input a valid, positive number between 0 and 45")
+            print("")
+        elif no_of_students > 45:
+            print("Sorry, the maximum number of students allowed on this trip is 45.")
+            print("")
+        else:
+            print("")
+
+            valid_input = False
+    except ValueError:
+        print("Please input a number.")
+        print("")
+
 valid_input = len(paid_or_not)
 
 while valid_input != check_list_count:
@@ -128,30 +131,31 @@ while valid_input != check_list_count:
 
 if paid >= 11:
     free_tickets = paid // 11
-    print(f"The free tickets are {free_tickets}, the paid are {paid}")
-# cost_of_coach_per_student = round((cost_of_coach / paid), 2)
-# cost_of_entry_per_student = round(((entry_cost * (paid - (free_tickets))) / paid), 2)
-cost_charged = round((cost_of_coach + ((paid - free_tickets) * entry_cost)), 2)
 
+cost_charged = round((cost_of_coach + ((no_of_students - free_tickets) * entry_cost)), 2)
 money_collected = round((paid * cost_per_student), 2)
 profit_or_loss = round((money_collected - cost_charged), 2)
 
-if profit_or_loss > 0:
+if profit_or_loss > -1 and profit_or_loss < 1:
+    profit_or_loss_text = "broken even"
+    profit_or_loss = 0.00
+    money_collected = cost_charged
+elif profit_or_loss > 0:
     profit_or_loss_text = "made a profit"
 elif profit_or_loss < 0:
     profit_or_loss_text = "made a loss"
-else:
-    profit_or_loss_text = "broken even"
 
 print("----------------------------------------")
 print(f"The total money charged is ${cost_charged}")
-print(f"The total money collected is ${money_collected}.")
-print(f"The trip has {profit_or_loss_text} by ${profit_or_loss}.")
+print(f"The total money collected is ${money_collected}")
+print(f"The trip has {profit_or_loss_text} by ${profit_or_loss}")
 print("----------------------------------------")
 
+
 """
-TEST DATA #1
-15
+TEST DATA TO COPY & PASTE INTO THE TERMINAL FOR QUICK DEBUGGING
+
+FOR A LOSS
 20
 a
 paid
@@ -184,19 +188,19 @@ paid
 n
 paid
 o
-paid
+not paid
 p
-paid
+not paid
 q
-paid
+not paid
 r
-paid
+not paid
 s
-paid
+not paid
+15
 
 
-TEST DATA #2
-20
+FOR A LOSS
 15
 a
 paid
@@ -228,5 +232,121 @@ m
 paid
 n
 paid
+20
+
+
+FOR A LOSS
+20
+a
+paid
+b
+paid
+c
+paid
+d
+paid
+e
+paid
+f
+paid
+f
+paid
+g
+paid
+h
+paid
+i
+paid
+j
+paid
+k
+paid
+l
+paid
+m
+paid
+n
+paid
+o
+not paid
+p
+not paid
+q
+not paid
+r
+not paid
+s
+not paid
+20
+
+
+FOR A PROFIT
+15
+a
+paid
+b
+paid
+c
+paid
+d
+paid
+e
+paid
+f
+paid
+f
+paid
+g
+paid
+h
+paid
+i
+paid
+j
+paid
+k
+paid
+l
+paid
+m
+paid
+n
+paid
+10
+
+
+FOR BREAKING EVEN
+15
+a
+paid
+b
+paid
+c
+paid
+d
+paid
+e
+paid
+f
+paid
+f
+paid
+g
+paid
+h
+paid
+i
+paid
+j
+paid
+k
+paid
+l
+paid
+m
+paid
+n
+paid
+15
 
 """
