@@ -1,6 +1,6 @@
 """
 For IGCSE Computer Science course & IGCSE Computer Mock Exam
-Author: Sooraj Sannabhadti
+Made by: Sooraj Sannabhadti
 """
 import time
 
@@ -52,7 +52,7 @@ names_of_students = []
 paid_or_not = []
 
 while no_of_students != 0:
-    name_of_person = input(f"What is the first name of the student number {no_of_students}? ")
+    name_of_person = input(f"What is the name of student number {no_of_students}? ")
     print("")
 
     if name_of_person != "":
