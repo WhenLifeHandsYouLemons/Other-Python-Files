@@ -42,6 +42,28 @@ print("----------------------------------------")
 print("")
 
 # Task 2
+
+max_allowed = 45 - no_of_students
+
+valid_input = True
+while valid_input:
+    try:
+        add_no_of_students = int(input("How many MORE students want to go on this trip? "))
+
+        if add_no_of_students < 0:
+            print(f"Please input a valid, positive number between 0 and {max_allowed}")
+            print("")
+        elif add_no_of_students > max_allowed:
+            print("The maximum number of students allowed on this trip is 45.")
+            print("")
+        else:
+            valid_input = False
+    except ValueError:
+        print("Please input a number.")
+        print("")
+
+no_of_students = add_no_of_students + no_of_students
+
 name_list_count = 0
 paid_list_count = 0
 check_list_count = 0
@@ -148,7 +170,7 @@ elif profit_or_loss < 0:
     profit_or_loss_text = "made a loss"
 
 print("----------------------------------------")
-print(f"The number of students that are going is {no_of_students}")
+print(f"There are {no_of_students} students who are going")
 print(f"The total money charged is ${cost_charged}")
 print(f"The total money collected is ${money_collected}")
 print(f"The trip has {profit_or_loss_text} by ${profit_or_loss}")
@@ -158,8 +180,99 @@ print("----------------------------------------")
 """
 TEST DATA TO COPY & PASTE INTO THE TERMINAL FOR QUICK DEBUGGING
 
+FOR BREAKING EVEN
+15
+5
+a
+paid
+b
+paid
+c
+paid
+d
+paid
+e
+paid
+f
+paid
+f
+paid
+g
+paid
+h
+paid
+i
+paid
+j
+paid
+k
+paid
+l
+paid
+m
+paid
+n
+paid
+o
+not paid
+p
+not paid
+q
+not paid
+r
+not paid
+s
+not paid
+
+
+FOR A LOSS OF $173.30
+15
+5
+a
+paid
+b
+paid
+c
+paid
+d
+paid
+e
+paid
+f
+paid
+f
+paid
+g
+paid
+h
+paid
+i
+paid
+j
+not paid
+k
+not paid
+l
+not paid
+m
+not paid
+n
+not paid
+o
+not paid
+p
+not paid
+q
+not paid
+r
+not paid
+s
+not paid
+
+
 FOR A LOSS OF $130
 20
+0
 a
 paid
 b
@@ -204,6 +317,7 @@ not paid
 
 FOR BREAKING EVEN
 15
+0
 a
 paid
 b
@@ -236,86 +350,9 @@ n
 paid
 
 
-FOR A LOSS OF $130
-20
-a
-paid
-b
-paid
-c
-paid
-d
-paid
-e
-paid
-f
-paid
-f
-paid
-g
-paid
-h
-paid
-i
-paid
-j
-paid
-k
-paid
-l
-paid
-m
-paid
-n
-paid
-o
-not paid
-p
-not paid
-q
-not paid
-r
-not paid
-s
-not paid
-
-
-FOR BREAKING EVEN
-15
-a
-paid
-b
-paid
-c
-paid
-d
-paid
-e
-paid
-f
-paid
-f
-paid
-g
-paid
-h
-paid
-i
-paid
-j
-paid
-k
-paid
-l
-paid
-m
-paid
-n
-paid
-
-
-FOR BREAKING EVEN
-15
+FOR A PROFIT OF $305
+10
+5
 a
 paid
 b
