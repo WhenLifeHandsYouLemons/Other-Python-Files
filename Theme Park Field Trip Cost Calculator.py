@@ -1,5 +1,5 @@
 """
-For IGCSE Computer Science course & IGCSE Computer Mock Exam
+For IGCSE Computer Science course & IGCSE Computer Science Mock Exam
 Made by: Sooraj Sannabhadti
 """
 import time
