@@ -72,9 +72,8 @@ while day_end == False:
     input("Do you want to start booking? Press 'Enter' to start. ")
     print("")
 
-    valid_input = False
-
     # Start a loop until the user enters a valid input for up trains
+    valid_input = False
     while valid_input == False:
         # Ask which up train time and number of people
         chosen_up_train_time = input("What time do you want to go up the mountain? ")
@@ -312,19 +311,34 @@ while day_end == False:
         screen_display()
 
 
-# Run this only if the first two inputs are 'Day end'.
+# Run this only if the first two inputs are 'Day end'
 def end_day():
     # Calculate the total number of people and total money taken
     total_number_of_people_today = passengers_per_up_train[0] + passengers_per_up_train[1] + passengers_per_up_train[2] + passengers_per_up_train[3] + passengers_per_down_train[0] + passengers_per_down_train[1] + passengers_per_down_train[2] + passengers_per_down_train[3]
     total_amount_of_money_taken_today = money_per_up_train[0] + money_per_up_train[1] + money_per_up_train[2] + money_per_up_train[3] + money_per_down_train[0] + money_per_down_train[1] + money_per_down_train[2] + money_per_down_train[3]
     # Find out the train with the most passengers
     most_passengers_per_train_today = max(passengers_per_up_train)
+    # If there are more people in a return train, it will do this
     if max(passengers_per_down_train) > most_passengers_per_train_today:
+        # Find out the train with the most passengers
         most_passengers_per_train_today = max(passengers_per_down_train)
-    train_time = 0
-    while train_time != 4:
-        if most_passengers_per_train_today != passengers_per_up_train:
-            print("OH NO")
+
+        # Starts a loop to find out which train time has the most passengers
+        position_in_list = 0
+        while position_in_list != 4:
+            if most_passengers_per_train_today == passengers_per_down_train[position_in_list]:
+                # Saves the train time to train_time_with_most_passengers to use later
+                train_time_with_most_passengers = train_times_per_down_train[position_in_list]
+            position_in_list = position_in_list + 1
+    # If there are more people in a departure train, it will do this
+    else:
+        # Starts a loop to find out which train time has the most passengers
+        position_in_list = 0
+        while position_in_list != 4:
+            if most_passengers_per_train_today == passengers_per_up_train[position_in_list]:
+                # Saves the train time to train_time_with_most_passengers to use later
+                train_time_with_most_passengers = train_times_per_up_train[position_in_list]
+            position_in_list = position_in_list + 1
 
     print("")
     print("")
@@ -345,134 +359,7 @@ def end_day():
     print("---------------------------------------------------------")
     print(f"The total number of pasengers for today is {total_number_of_people_today}.")
     print(f"The total amount of money taken for today is ${total_amount_of_money_taken_today}0")
-    print(f"The {} train had the most pasengers today.")
+    print(f"The {train_time_with_most_passengers} train had the most pasengers today.")
+    print("---------------------------------------------------------")
 
 end_day()
-
-"""
-TEST DATA #1
-
-Day end
-Day end
-
-The result should be that the program stops.
-
-
-TEST DATA #2
-
-09:00
-50
-10:00
-5
-10:00
-5
-10:00
-5
-10:00
-5
-10:00
-5
-10:00
-5
-10:00
-5
-10:00
-5
-10:00
-5
-10:00
-5
-
-Result: 5 free tickets, total 100 tickets, price $2375.00
-
-
-TEST DATA #3
-
-09:00
-480
-10:00
-480
-
-
-09:00
-1
-11:00
-5
-10:00
-5
-16:00
-5
-
-Result: 0 free tickets, total 10 tickets, price $250.00
-
-
-TEST DATA #4
-
-13:00
-27
-16:00
-9
-14:00
-17
-16:00
-1
-
-Result:  free tickets, total  tickets, price $.00
-
-
-TEST DATA #5
-
-09:00
-50
-10:00
-5
-10:00
-5
-10:00
-5
-10:00
-5
-10:00
-5
-10:00
-5
-10:00
-5
-10:00
-5
-10:00
-5
-10:00
-5
-
-
-09:00
-430
-10:00
-430
-
-
-09:00
-1
-11:00
-5
-10:00
-5
-16:00
-5
-
-
-13:00
-27
-16:00
-9
-14:00
-17
-16:00
-1
-
-
-Day end
-Day end
-
-"""
