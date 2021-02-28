@@ -3,6 +3,7 @@ For IGCSE Computer Science course & IGCSE Computer Science Exam
 Made by - Sooraj Sannabhadti
 """
 
+
 # TASK 1
 ticket_price = 25.00
 seats_per_coach = 80
@@ -57,10 +58,11 @@ def screen_display():
 
 screen_display()
 
+
 # TASK 2
 day_end = False
 
-# Starts a loop until the day has ended
+# Starts a loop until the day has ended (The first 3 inputs are "Day end")
 while day_end == False:
     # Resetting the variables
     total_free_tickets = 0
@@ -311,55 +313,53 @@ while day_end == False:
         screen_display()
 
 
-# Run this only if the first two inputs are 'Day end'
-def end_day():
-    # Calculate the total number of people and total money taken
-    total_number_of_people_today = passengers_per_up_train[0] + passengers_per_up_train[1] + passengers_per_up_train[2] + passengers_per_up_train[3] + passengers_per_down_train[0] + passengers_per_down_train[1] + passengers_per_down_train[2] + passengers_per_down_train[3]
-    total_amount_of_money_taken_today = money_per_up_train[0] + money_per_up_train[1] + money_per_up_train[2] + money_per_up_train[3] + money_per_down_train[0] + money_per_down_train[1] + money_per_down_train[2] + money_per_down_train[3]
+# TASK 3
+
+# Calculate the total number of people and total money taken
+total_number_of_people_today = passengers_per_up_train[0] + passengers_per_up_train[1] + passengers_per_up_train[2] + passengers_per_up_train[3] + passengers_per_down_train[0] + passengers_per_down_train[1] + passengers_per_down_train[2] + passengers_per_down_train[3]
+total_amount_of_money_taken_today = money_per_up_train[0] + money_per_up_train[1] + money_per_up_train[2] + money_per_up_train[3] + money_per_down_train[0] + money_per_down_train[1] + money_per_down_train[2] + money_per_down_train[3]
+# Find out the train with the most passengers
+most_passengers_per_train_today = max(passengers_per_up_train)
+# If there are more people in a return train, it will do this
+if max(passengers_per_down_train) > most_passengers_per_train_today:
     # Find out the train with the most passengers
-    most_passengers_per_train_today = max(passengers_per_up_train)
-    # If there are more people in a return train, it will do this
-    if max(passengers_per_down_train) > most_passengers_per_train_today:
-        # Find out the train with the most passengers
-        most_passengers_per_train_today = max(passengers_per_down_train)
+    most_passengers_per_train_today = max(passengers_per_down_train)
 
-        # Starts a loop to find out which train time has the most passengers
-        position_in_list = 0
-        while position_in_list != 4:
-            if most_passengers_per_train_today == passengers_per_down_train[position_in_list]:
-                # Saves the train time to train_time_with_most_passengers to use later
-                train_time_with_most_passengers = train_times_per_down_train[position_in_list]
-            position_in_list = position_in_list + 1
-    # If there are more people in a departure train, it will do this
-    else:
-        # Starts a loop to find out which train time has the most passengers
-        position_in_list = 0
-        while position_in_list != 4:
-            if most_passengers_per_train_today == passengers_per_up_train[position_in_list]:
-                # Saves the train time to train_time_with_most_passengers to use later
-                train_time_with_most_passengers = train_times_per_up_train[position_in_list]
-            position_in_list = position_in_list + 1
+    # Starts a loop to find out which train time has the most passengers
+    position_in_list = 0
+    while position_in_list != 4:
+        if most_passengers_per_train_today == passengers_per_down_train[position_in_list]:
+            # Saves the train time to train_time_with_most_passengers to use later
+            train_time_with_most_passengers = train_times_per_down_train[position_in_list]
+        position_in_list = position_in_list + 1
+# If there are more people in a departure train, it will do this
+else:
+    # Starts a loop to find out which train time has the most passengers
+    position_in_list = 0
+    while position_in_list != 4:
+        if most_passengers_per_train_today == passengers_per_up_train[position_in_list]:
+            # Saves the train time to train_time_with_most_passengers to use later
+            train_time_with_most_passengers = train_times_per_up_train[position_in_list]
+        position_in_list = position_in_list + 1
 
-    print("")
-    print("")
-    print("TODAY'S TOTAL")
-    print("")
-    print("---------------------------------------------------------")
-    print("Departure times      Passengers booked       Money taken")
-    print(f"{train_times_per_up_train[0]}                {passengers_per_up_train[0]}                       {money_per_up_train[0]}")
-    print(f"{train_times_per_up_train[1]}                {passengers_per_up_train[1]}                       {money_per_up_train[1]}")
-    print(f"{train_times_per_up_train[2]}                {passengers_per_up_train[2]}                       {money_per_up_train[2]}")
-    print(f"{train_times_per_up_train[3]}                {passengers_per_up_train[3]}                       {money_per_up_train[3]}")
-    print("---------------------------------------------------------")
-    print("Return times      Passengers booked       Money taken")
-    print(f"{train_times_per_down_train[0]}             {passengers_per_down_train[0]}                       {money_per_down_train[0]}")
-    print(f"{train_times_per_down_train[1]}             {passengers_per_down_train[1]}                       {money_per_down_train[1]}")
-    print(f"{train_times_per_down_train[2]}             {passengers_per_down_train[2]}                       {money_per_down_train[2]}")
-    print(f"{train_times_per_down_train[3]}             {passengers_per_down_train[3]}                       {money_per_down_train[3]}")
-    print("---------------------------------------------------------")
-    print(f"The total number of pasengers for today is {total_number_of_people_today}.")
-    print(f"The total amount of money taken for today is ${total_amount_of_money_taken_today}0")
-    print(f"The {train_time_with_most_passengers} train had the most pasengers today.")
-    print("---------------------------------------------------------")
-
-end_day()
+print("")
+print("")
+print("TODAY'S TOTAL")
+print("")
+print("---------------------------------------------------------")
+print("Departure times      Passengers booked       Money taken")
+print(f"{train_times_per_up_train[0]}                {passengers_per_up_train[0]}                       {money_per_up_train[0]}")
+print(f"{train_times_per_up_train[1]}                {passengers_per_up_train[1]}                       {money_per_up_train[1]}")
+print(f"{train_times_per_up_train[2]}                {passengers_per_up_train[2]}                       {money_per_up_train[2]}")
+print(f"{train_times_per_up_train[3]}                {passengers_per_up_train[3]}                       {money_per_up_train[3]}")
+print("---------------------------------------------------------")
+print("Return times      Passengers booked       Money taken")
+print(f"{train_times_per_down_train[0]}             {passengers_per_down_train[0]}                       {money_per_down_train[0]}")
+print(f"{train_times_per_down_train[1]}             {passengers_per_down_train[1]}                       {money_per_down_train[1]}")
+print(f"{train_times_per_down_train[2]}             {passengers_per_down_train[2]}                       {money_per_down_train[2]}")
+print(f"{train_times_per_down_train[3]}             {passengers_per_down_train[3]}                       {money_per_down_train[3]}")
+print("---------------------------------------------------------")
+print(f"The total number of pasengers for today is {total_number_of_people_today}.")
+print(f"The total amount of money taken for today is ${total_amount_of_money_taken_today}0")
+print(f"The {train_time_with_most_passengers} train had the most pasengers today.")
+print("---------------------------------------------------------")
