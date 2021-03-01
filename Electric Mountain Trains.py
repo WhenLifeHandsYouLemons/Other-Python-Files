@@ -152,17 +152,13 @@ while day_end == False:
     if day_end == False:
         # Saves the total number of tickets for later use
         total_number_of_tickets = number_of_up_train_people
-        print(f"The total_number_of_tickets = {total_number_of_tickets}")
 
         # Check if discount is possible
         if number_of_up_train_people >= 10:
             number_of_tickets = number_of_up_train_people - (number_of_up_train_people // 10)
             total_free_tickets = number_of_up_train_people // 10
-            print(f"The number_of_tickets = {number_of_tickets}")
-            print(f"The total_free_tickets = {total_free_tickets}")
         else:
             number_of_tickets = number_of_up_train_people
-            print(f"The number_of_tickets = {number_of_tickets}")
 
         # Calculates total price for going up the mountain
         up_train_price = ticket_price * number_of_tickets
@@ -272,11 +268,8 @@ while day_end == False:
             if number_of_down_train_people >= 10:
                 number_of_tickets = number_of_down_train_people - (number_of_down_train_people // 10)
                 total_free_tickets = (number_of_down_train_people // 10) + total_free_tickets
-                print(f"The number_of_tickets = {number_of_tickets}")
-                print(f"The total_free_tickets = {total_free_tickets}")
             else:
                 number_of_tickets = number_of_down_train_people
-                print(f"The number_of_tickets = {number_of_tickets}")
 
             # Calculates current total price for going down the mountain
             down_train_price = (ticket_price * number_of_tickets) + down_train_price
@@ -293,7 +286,6 @@ while day_end == False:
             money_per_down_train.insert(chosen_down_train_time, total_money_per_chosen_train)
 
         # Calculates and prints the total price
-        print(f"The up_train_price = {up_train_price}, down_train_price = {down_train_price}")
         total_price = round((up_train_price + down_train_price), 2)
         print("")
         print(f"------------------Receipt------------------")
