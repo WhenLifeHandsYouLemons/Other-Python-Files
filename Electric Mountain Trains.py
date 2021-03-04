@@ -2,9 +2,8 @@
 For IGCSE Computer Science course & IGCSE Computer Science Exam
 Made by - Sooraj Sannabhadti
 """
-
-
 # TASK 1
+
 ticket_price = 25.00
 seats_per_coach = 80
 discount = 10
@@ -45,24 +44,21 @@ def check_fill():
 
 # Prints the times and seats available per train
 def screen_display():
-    print("")
-    print("SCREEN DISPLAY")
+    print("\n\nSCREEN DISPLAY")
     print("--------------------------------------------------------------")
     print("Departure times	        Seats   |	Return times	Seats")
     print(f"     {train_times_per_up_train[0]}               {available_seats_per_up_train[0]}	|	    {train_times_per_down_train[0]}        {available_seats_per_down_train[0]}")
     print(f"     {train_times_per_up_train[1]}               {available_seats_per_up_train[1]}	|	    {train_times_per_down_train[1]}        {available_seats_per_down_train[1]}")
     print(f"     {train_times_per_up_train[2]}               {available_seats_per_up_train[2]}	|	    {train_times_per_down_train[2]}        {available_seats_per_down_train[2]}")
     print(f"     {train_times_per_up_train[3]}               {available_seats_per_up_train[3]}	|	    {train_times_per_down_train[3]}        {available_seats_per_down_train[3]}")
-    print("--------------------------------------------------------------")
-    print("")
+    print("--------------------------------------------------------------\n")
 
 screen_display()
 
-
 # TASK 2
-day_end = False
 
-# Starts a loop until the day has ended (The first 3 inputs are "Day end")
+# Starts a loop until the day has ended (The first input should be "Day end")
+day_end = False
 while day_end == False:
     # Resetting the variables
     total_free_tickets = 0
@@ -70,83 +66,75 @@ while day_end == False:
     up_train_price = 0
     down_train_price = 0
 
-    print("")
-    input("Do you want to start booking? Press 'Enter' to start. ")
-    print("")
+    secret = input("\nDo you want to start booking? Press 'Enter' to start. ")
 
-    # Start a loop until the user enters a valid input for up trains
-    valid_input = False
+    # Does this part if the first input is "Day end"
+    if secret == "Day end":
+        valid_input = True
+        day_end = True
+    else:
+        # Start a loop until the user enters a valid input for up trains
+        valid_input = False
+        day_end = False
+
+    # Skips this part if the first two inputs are "Day end"
     while valid_input == False:
         # Ask which up train time and number of people
-        chosen_up_train_time = input("What time do you want to go up the mountain? ")
+        chosen_up_train_time = input("\nWhat time do you want to go up the mountain? ")
         number_of_up_train_people = input("How many people are going on this train? ")
 
-        # Does this part if the first two inputs are "Day end"
-        if chosen_up_train_time == "Day end" and number_of_up_train_people == "Day end":
-            valid_input = True
-            day_end = True
-        # Skips this part if the first two inputs are "Day end"
-        else:
-            # Try to convert the number_of_up_train_people input into an integer
-            try:
-                number_of_up_train_people = int(number_of_up_train_people)
-                # Check if the train time input is one of these
-                if chosen_up_train_time == "09:00":
-                    # Check that the chosen train has empty seats
-                    if available_seats_per_up_train[0] != "Closed":
-                        # Check if the number of people is more than the seats available for the chosen train
-                        if number_of_up_train_people <= available_seats_per_up_train[0]:
-                            chosen_up_train_time = 0
-                            valid_input = True
-                        else:
-                            print(f"Please input a number less than or equal to {available_seats_per_up_train[0]}")
+        # Try to convert the number_of_up_train_people input into an integer
+        try:
+            number_of_up_train_people = int(number_of_up_train_people)
+            # Check if the train time input is one of these
+            if chosen_up_train_time == "09:00":
+                # Check that the chosen train has empty seats
+                if available_seats_per_up_train[0] != "Closed":
+                    # Check if the number of people is more than the seats available for the chosen train
+                    if number_of_up_train_people <= available_seats_per_up_train[0]:
+                        chosen_up_train_time = 0
+                        valid_input = True
                     else:
-                        print("")
-                        print("The selected train is full. Please choose a different train time.")
-                        print("")
-                elif chosen_up_train_time == "11:00":
-                    # Check that the chosen train has empty seats
-                    if available_seats_per_up_train[1] != "Closed":
-                        # Check if the number of people is more than the seats available for the chosen train
-                        if number_of_up_train_people <= available_seats_per_up_train[1]:
-                            chosen_up_train_time = 1
-                            valid_input = True
-                        else:
-                            print(f"Please input a number less than or equal to {available_seats_per_up_train[1]}")
-                    else:
-                        print("")
-                        print("The selected train is full. Please choose a different train time.")
-                        print("")
-                elif chosen_up_train_time == "13:00":
-                    # Check that the chosen train has empty seats
-                    if available_seats_per_up_train[2] != "Closed":
-                        # Check if the number of people is more than the seats available for the chosen train
-                        if number_of_up_train_people <= available_seats_per_up_train[2]:
-                            chosen_up_train_time = 2
-                            valid_input = True
-                        else:
-                            print(f"please input a number less than or equal to {available_seats_per_up_train[2]}")
-                    else:
-                        print("")
-                        print("The selected train is full. Please choose a different train time.")
-                        print("")
-                elif chosen_up_train_time == "15:00":
-                    # Check that the chosen train has empty seats
-                    if available_seats_per_up_train[3] != "Closed":
-                        # Check if the number of people is more than the seats available for the chosen train
-                        if number_of_up_train_people <= available_seats_per_up_train[3]:
-                            chosen_up_train_time = 3
-                            valid_input = True
-                        else:
-                            print(f"please input a number less than or equal to {available_seats_per_up_train[3]}")
-                    else:
-                        print("")
-                        print("The selected train is full. Please choose a different train time.")
-                        print("")
+                        print(f"\nPlease input a number less than or equal to {available_seats_per_up_train[0]}")
                 else:
-                    print("Please input a valid time shown on the screen display.")
-            except:
-                print("Please input a valid number. eg: 2")
+                    print("\nThe selected train is full. Please choose a different train time.")
+            elif chosen_up_train_time == "11:00":
+                # Check that the chosen train has empty seats
+                if available_seats_per_up_train[1] != "Closed":
+                    # Check if the number of people is more than the seats available for the chosen train
+                    if number_of_up_train_people <= available_seats_per_up_train[1]:
+                        chosen_up_train_time = 1
+                        valid_input = True
+                    else:
+                        print(f"\nPlease input a number less than or equal to {available_seats_per_up_train[1]}")
+                else:
+                    print("\nThe selected train is full. Please choose a different train time.")
+            elif chosen_up_train_time == "13:00":
+                # Check that the chosen train has empty seats
+                if available_seats_per_up_train[2] != "Closed":
+                    # Check if the number of people is more than the seats available for the chosen train
+                    if number_of_up_train_people <= available_seats_per_up_train[2]:
+                        chosen_up_train_time = 2
+                        valid_input = True
+                    else:
+                        print(f"\nPlease input a number less than or equal to {available_seats_per_up_train[2]}")
+                else:
+                    print("\nThe selected train is full. Please choose a different train time.")
+            elif chosen_up_train_time == "15:00":
+                # Check that the chosen train has empty seats
+                if available_seats_per_up_train[3] != "Closed":
+                    # Check if the number of people is more than the seats available for the chosen train
+                    if number_of_up_train_people <= available_seats_per_up_train[3]:
+                        chosen_up_train_time = 3
+                        valid_input = True
+                    else:
+                        print(f"Please input a number less than or equal to {available_seats_per_up_train[3]}")
+                else:
+                    print("\nThe selected train is full. Please choose a different train time.")
+            else:
+                print("\nPlease input a valid time shown on the screen display.")
+        except:
+            print("\nPlease input a valid number. eg: 2")
 
     # Skips this part if the first two inputs are "Day end"
     if day_end == False:
@@ -179,10 +167,8 @@ while day_end == False:
         while valid_input == False:
             # Start a loop until the user enters a valid input for down trains
             while valid_input == False:
-                print("")
-
                 # Ask which down train time and number of people
-                chosen_down_train_time = input("What time do you want to go down the mountain? ")
+                chosen_down_train_time = input("\nWhat time do you want to go down the mountain? ")
                 number_of_down_train_people = input("How many people are going on this train? ")
 
                 # Try to convert the number_of_down_train_people input into an integer
@@ -197,13 +183,11 @@ while day_end == False:
                                 chosen_down_train_time = 0
                                 valid_input = True
                             elif number_of_down_train_people > total_seats_per_down_train[0]:
-                                print("There are not enough seats on this train, please choose a different train.")
+                                print("\nThere are not enough seats on this train, please choose a different train.")
                             else:
-                                print(f"Please input a number less than or equal to {number_of_up_train_people}")
+                                print(f"\nPlease input a number less than or equal to {number_of_up_train_people}")
                         else:
-                            print("")
-                            print("The selected train is full. Please choose a different train time.")
-                            print("")
+                            print("\nThe selected train is full. Please choose a different train time.")
                     elif chosen_down_train_time == "12:00":
                         # Check that the chosen train has empty seats
                         if available_seats_per_down_train[1] != "Closed":
@@ -212,13 +196,11 @@ while day_end == False:
                                 chosen_down_train_time = 1
                                 valid_input = True
                             elif number_of_down_train_people > total_seats_per_down_train[1]:
-                                print("There are not enough seats on this train, please choose a different train.")
+                                print("\nThere are not enough seats on this train, please choose a different train.")
                             else:
-                                print(f"Please input a number less than or equal to {number_of_up_train_people}")
+                                print(f"\nPlease input a number less than or equal to {number_of_up_train_people}")
                         else:
-                            print("")
-                            print("The selected train is full. Please choose a different train time.")
-                            print("")
+                            print("\nThe selected train is full. Please choose a different train time.")
                     elif chosen_down_train_time == "14:00":
                         # Check that the chosen train has empty seats
                         if available_seats_per_down_train[2] != "Closed":
@@ -227,13 +209,11 @@ while day_end == False:
                                 chosen_down_train_time = 2
                                 valid_input = True
                             elif number_of_down_train_people > total_seats_per_down_train[2]:
-                                print("There are not enough seats on this train, please choose a different train.")
+                                print("\nThere are not enough seats on this train, please choose a different train.")
                             else:
-                                print(f"Please input a number less than or equal to {number_of_up_train_people}")
+                                print(f"\nPlease input a number less than or equal to {number_of_up_train_people}")
                         else:
-                            print("")
-                            print("The selected train is full. Please choose a different train time.")
-                            print("")
+                            print("\nThe selected train is full. Please choose a different train time.")
                     elif chosen_down_train_time == "16:00":
                         # Check that the chosen train has empty seats
                         if available_seats_per_down_train[3] != "Closed":
@@ -242,24 +222,21 @@ while day_end == False:
                                 chosen_down_train_time = 3
                                 valid_input = True
                             elif number_of_down_train_people > total_seats_per_down_train[3]:
-                                print("There are not enough seats on this train, please choose a different train.")
+                                print("\nThere are not enough seats on this train, please choose a different train.")
                             else:
-                                print(f"Please input a number less than or equal to {number_of_up_train_people}")
+                                print(f"\nPlease input a number less than or equal to {number_of_up_train_people}")
                         else:
-                            print("")
-                            print("The selected train is full. Please choose a different train time.")
-                            print("")
+                            print("\nThe selected train is full. Please choose a different train time.")
                     else:
-                        print("Please input a valid time shown on the screen display.")
+                        print("\nPlease input a valid time shown on the screen display.")
                 except:
-                    print(f"Please input a valid number. eg: {number_of_up_train_people}")
+                    print(f"\nPlease input a valid number. eg: {number_of_up_train_people}")
 
             # Checks if everyone who goes up is buying a return ticket
             if number_of_down_train_people < number_of_up_train_people:
                 number_of_up_train_people = number_of_up_train_people - number_of_down_train_people
                 valid_input = False
-                print("")
-                print(f"Please buy extra tickets for {number_of_up_train_people} people.")
+                print(f"\nPlease buy extra tickets for {number_of_up_train_people} people.")
 
             # Saves the total number of tickets for later use
             total_number_of_tickets = number_of_down_train_people + total_number_of_tickets
@@ -287,16 +264,13 @@ while day_end == False:
 
         # Calculates and prints the total price
         total_price = round((up_train_price + down_train_price), 2)
-        print("")
-        print(f"------------------Receipt------------------")
+        print(f"\n------------------Receipt------------------")
         print(f"You've bought {total_number_of_tickets} tickets.")
         print(f"The cost of one ticket is ${ticket_price}0")
         print(f"You get {total_free_tickets} tickets free!")
         print(f"The total price of the tickets is ${total_price}0")
         print("-------------------------------------------")
-        print("")
-        input("Press 'Enter' to finish booking.")
-        print("")
+        input("\nPress 'Enter' to finish booking.")
 
         # Check which trains are full and update the display
         check_fill()
@@ -334,11 +308,8 @@ else:
             train_time_with_most_passengers = train_times_per_up_train[position_in_list]
         position_in_list = position_in_list + 1
 
-print("")
-print("")
-print("TODAY'S TOTAL")
-print("")
-print("---------------------------------------------------------")
+print("\n\nTODAY'S TOTAL")
+print("\n---------------------------------------------------------")
 print("Departure times      Passengers booked       Money taken")
 print(f"{train_times_per_up_train[0]}                {passengers_per_up_train[0]}                       {money_per_up_train[0]}")
 print(f"{train_times_per_up_train[1]}                {passengers_per_up_train[1]}                       {money_per_up_train[1]}")
