@@ -86,53 +86,57 @@ while day_end == False:
         # Try to convert the number_of_up_train_people input into an integer
         try:
             number_of_up_train_people = int(number_of_up_train_people)
-            # Check if the train time input is one of these
-            if chosen_up_train_time == "09:00":
-                # Check that the chosen train has empty seats
-                if available_seats_per_up_train[0] != "Closed":
-                    # Check if the number of people is more than the seats available for the chosen train
-                    if number_of_up_train_people <= available_seats_per_up_train[0]:
-                        chosen_up_train_time = 0
-                        valid_input = True
+            # Check if the user has entered a number more than 0
+            if number_of_up_train_people > 0:
+                # Check if the train time input is one of these
+                if chosen_up_train_time == "09:00":
+                    # Check that the chosen train has empty seats
+                    if available_seats_per_up_train[0] != "Closed":
+                        # Check if the number of people is more than the seats available for the chosen train
+                        if number_of_up_train_people <= available_seats_per_up_train[0]:
+                            chosen_up_train_time = 0
+                            valid_input = True
+                        else:
+                            print(f"\nPlease input a number less than or equal to {available_seats_per_up_train[0]}")
                     else:
-                        print(f"\nPlease input a number less than or equal to {available_seats_per_up_train[0]}")
-                else:
-                    print("\nThe selected train is full. Please choose a different train time.")
-            elif chosen_up_train_time == "11:00":
-                # Check that the chosen train has empty seats
-                if available_seats_per_up_train[1] != "Closed":
-                    # Check if the number of people is more than the seats available for the chosen train
-                    if number_of_up_train_people <= available_seats_per_up_train[1]:
-                        chosen_up_train_time = 1
-                        valid_input = True
+                        print("\nThe selected train is full. Please choose a different train time.")
+                elif chosen_up_train_time == "11:00":
+                    # Check that the chosen train has empty seats
+                    if available_seats_per_up_train[1] != "Closed":
+                        # Check if the number of people is more than the seats available for the chosen train
+                        if number_of_up_train_people <= available_seats_per_up_train[1]:
+                            chosen_up_train_time = 1
+                            valid_input = True
+                        else:
+                            print(f"\nPlease input a number less than or equal to {available_seats_per_up_train[1]}")
                     else:
-                        print(f"\nPlease input a number less than or equal to {available_seats_per_up_train[1]}")
-                else:
-                    print("\nThe selected train is full. Please choose a different train time.")
-            elif chosen_up_train_time == "13:00":
-                # Check that the chosen train has empty seats
-                if available_seats_per_up_train[2] != "Closed":
-                    # Check if the number of people is more than the seats available for the chosen train
-                    if number_of_up_train_people <= available_seats_per_up_train[2]:
-                        chosen_up_train_time = 2
-                        valid_input = True
+                        print("\nThe selected train is full. Please choose a different train time.")
+                elif chosen_up_train_time == "13:00":
+                    # Check that the chosen train has empty seats
+                    if available_seats_per_up_train[2] != "Closed":
+                        # Check if the number of people is more than the seats available for the chosen train
+                        if number_of_up_train_people <= available_seats_per_up_train[2]:
+                            chosen_up_train_time = 2
+                            valid_input = True
+                        else:
+                            print(f"\nPlease input a number less than or equal to {available_seats_per_up_train[2]}")
                     else:
-                        print(f"\nPlease input a number less than or equal to {available_seats_per_up_train[2]}")
-                else:
-                    print("\nThe selected train is full. Please choose a different train time.")
-            elif chosen_up_train_time == "15:00":
-                # Check that the chosen train has empty seats
-                if available_seats_per_up_train[3] != "Closed":
-                    # Check if the number of people is more than the seats available for the chosen train
-                    if number_of_up_train_people <= available_seats_per_up_train[3]:
-                        chosen_up_train_time = 3
-                        valid_input = True
+                        print("\nThe selected train is full. Please choose a different train time.")
+                elif chosen_up_train_time == "15:00":
+                    # Check that the chosen train has empty seats
+                    if available_seats_per_up_train[3] != "Closed":
+                        # Check if the number of people is more than the seats available for the chosen train
+                        if number_of_up_train_people <= available_seats_per_up_train[3]:
+                            chosen_up_train_time = 3
+                            valid_input = True
+                        else:
+                            print(f"Please input a number less than or equal to {available_seats_per_up_train[3]}")
                     else:
-                        print(f"Please input a number less than or equal to {available_seats_per_up_train[3]}")
+                        print("\nThe selected train is full. Please choose a different train time.")
                 else:
-                    print("\nThe selected train is full. Please choose a different train time.")
+                    print("\nPlease input a valid time shown on the screen display.")
             else:
-                print("\nPlease input a valid time shown on the screen display.")
+                print("\nPlease input a valid positive number.")
         except:
             print("\nPlease input a valid number. eg: 2")
 
@@ -174,61 +178,65 @@ while day_end == False:
                 # Try to convert the number_of_down_train_people input into an integer
                 try:
                     number_of_down_train_people = int(number_of_down_train_people)
-                    # Check if the train time input is one of these
-                    if chosen_down_train_time == "10:00":
-                        # Check that the chosen train has empty seats
-                        if available_seats_per_down_train[0] != "Closed":
-                            # Check if the number of people is less than the seats available for the chosen train and less than the total going up
-                            if number_of_down_train_people <= number_of_up_train_people and number_of_down_train_people <= total_seats_per_down_train[0]:
-                                chosen_down_train_time = 0
-                                valid_input = True
-                            elif number_of_down_train_people > total_seats_per_down_train[0]:
-                                print("\nThere are not enough seats on this train, please choose a different train.")
+                    # Check if the user inputs a number more than 0
+                    if number_of_down_train_people > 0:
+                        # Check if the train time input is one of these
+                        if chosen_down_train_time == "10:00":
+                            # Check that the chosen train has empty seats
+                            if available_seats_per_down_train[0] != "Closed":
+                                # Check if the number of people is less than the seats available for the chosen train and less than the total going up
+                                if number_of_down_train_people <= number_of_up_train_people and number_of_down_train_people <= total_seats_per_down_train[0]:
+                                    chosen_down_train_time = 0
+                                    valid_input = True
+                                elif number_of_down_train_people > total_seats_per_down_train[0]:
+                                    print("\nThere are not enough seats on this train, please choose a different train.")
+                                else:
+                                    print(f"\nPlease input a number less than or equal to {number_of_up_train_people}")
                             else:
-                                print(f"\nPlease input a number less than or equal to {number_of_up_train_people}")
-                        else:
-                            print("\nThe selected train is full. Please choose a different train time.")
-                    elif chosen_down_train_time == "12:00":
-                        # Check that the chosen train has empty seats
-                        if available_seats_per_down_train[1] != "Closed":
-                            # Check if the number of people is less than the seats available for the chosen train and less than the total going up
-                            if number_of_down_train_people <= number_of_up_train_people and number_of_down_train_people <= total_seats_per_down_train[1]:
-                                chosen_down_train_time = 1
-                                valid_input = True
-                            elif number_of_down_train_people > total_seats_per_down_train[1]:
-                                print("\nThere are not enough seats on this train, please choose a different train.")
+                                print("\nThe selected train is full. Please choose a different train time.")
+                        elif chosen_down_train_time == "12:00":
+                            # Check that the chosen train has empty seats
+                            if available_seats_per_down_train[1] != "Closed":
+                                # Check if the number of people is less than the seats available for the chosen train and less than the total going up
+                                if number_of_down_train_people <= number_of_up_train_people and number_of_down_train_people <= total_seats_per_down_train[1]:
+                                    chosen_down_train_time = 1
+                                    valid_input = True
+                                elif number_of_down_train_people > total_seats_per_down_train[1]:
+                                    print("\nThere are not enough seats on this train, please choose a different train.")
+                                else:
+                                    print(f"\nPlease input a number less than or equal to {number_of_up_train_people}")
                             else:
-                                print(f"\nPlease input a number less than or equal to {number_of_up_train_people}")
-                        else:
-                            print("\nThe selected train is full. Please choose a different train time.")
-                    elif chosen_down_train_time == "14:00":
-                        # Check that the chosen train has empty seats
-                        if available_seats_per_down_train[2] != "Closed":
-                            # Check if the number of people is less than the seats available for the chosen train and less than the total going up
-                            if number_of_down_train_people <= number_of_up_train_people and number_of_down_train_people <= total_seats_per_down_train[2]:
-                                chosen_down_train_time = 2
-                                valid_input = True
-                            elif number_of_down_train_people > total_seats_per_down_train[2]:
-                                print("\nThere are not enough seats on this train, please choose a different train.")
+                                print("\nThe selected train is full. Please choose a different train time.")
+                        elif chosen_down_train_time == "14:00":
+                            # Check that the chosen train has empty seats
+                            if available_seats_per_down_train[2] != "Closed":
+                                # Check if the number of people is less than the seats available for the chosen train and less than the total going up
+                                if number_of_down_train_people <= number_of_up_train_people and number_of_down_train_people <= total_seats_per_down_train[2]:
+                                    chosen_down_train_time = 2
+                                    valid_input = True
+                                elif number_of_down_train_people > total_seats_per_down_train[2]:
+                                    print("\nThere are not enough seats on this train, please choose a different train.")
+                                else:
+                                    print(f"\nPlease input a number less than or equal to {number_of_up_train_people}")
                             else:
-                                print(f"\nPlease input a number less than or equal to {number_of_up_train_people}")
-                        else:
-                            print("\nThe selected train is full. Please choose a different train time.")
-                    elif chosen_down_train_time == "16:00":
-                        # Check that the chosen train has empty seats
-                        if available_seats_per_down_train[3] != "Closed":
-                            # Check if the number of people is less than the seats available for the chosen train and less than the total going up
-                            if number_of_down_train_people <= number_of_up_train_people and number_of_down_train_people <= total_seats_per_down_train[3]:
-                                chosen_down_train_time = 3
-                                valid_input = True
-                            elif number_of_down_train_people > total_seats_per_down_train[3]:
-                                print("\nThere are not enough seats on this train, please choose a different train.")
+                                print("\nThe selected train is full. Please choose a different train time.")
+                        elif chosen_down_train_time == "16:00":
+                            # Check that the chosen train has empty seats
+                            if available_seats_per_down_train[3] != "Closed":
+                                # Check if the number of people is less than the seats available for the chosen train and less than the total going up
+                                if number_of_down_train_people <= number_of_up_train_people and number_of_down_train_people <= total_seats_per_down_train[3]:
+                                    chosen_down_train_time = 3
+                                    valid_input = True
+                                elif number_of_down_train_people > total_seats_per_down_train[3]:
+                                    print("\nThere are not enough seats on this train, please choose a different train.")
+                                else:
+                                    print(f"\nPlease input a number less than or equal to {number_of_up_train_people}")
                             else:
-                                print(f"\nPlease input a number less than or equal to {number_of_up_train_people}")
+                                print("\nThe selected train is full. Please choose a different train time.")
                         else:
-                            print("\nThe selected train is full. Please choose a different train time.")
+                            print("\nPlease input a valid time shown on the screen display.")
                     else:
-                        print("\nPlease input a valid time shown on the screen display.")
+                        print("\nPlease input a valid positive number.")
                 except:
                     print(f"\nPlease input a valid number. eg: {number_of_up_train_people}")
 
