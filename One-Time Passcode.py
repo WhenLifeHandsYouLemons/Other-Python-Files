@@ -12,7 +12,7 @@ def register_user(key):
     print("QR Data: ",qr_data)
     # Render a QR code image
     img = qrcode.make(qr_data)
-    img.save("qrcode.png") # Save to PNG image file
+    # img.save("qrcode.png") # Save to PNG image file
     img.show() # Display image in a preview window
     return qr_data
 
@@ -28,7 +28,7 @@ def cheat(key):
 #### MAIN
 # Warning - Anyone who knows the key can generate codes for your "secure app"
 # Typically this key should be customised per-user
-encryption_key = 'superdupersecretpasswordthatyoucannotguess'
+encryption_key = 'super-duper secret password that you would never have guessed'
 while True:
     choice = input("(r)egister, (v)alidate, or (q)uit? ")
     # Register a new user
@@ -42,7 +42,7 @@ while True:
         if verify(encryption_key, confirm):
             print("Your code is correct")
         else:
-            print("Access denied!!! You will be shot dead...")
-        # Quit
+            print("Access denied!!! You will be dead in 5...")
+    # Quit
     elif choice == "q":
         break

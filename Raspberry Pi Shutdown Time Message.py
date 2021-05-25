@@ -1,5 +1,5 @@
 """
-This script is supposed to run in conjunction with the telegram-boot-alert script for the Raspberry Pi.
+This script is supposed to run with the telegram-boot-alert script for the Raspberry Pi.
 """
 import datetime
 
